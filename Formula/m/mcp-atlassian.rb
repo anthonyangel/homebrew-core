@@ -3,9 +3,10 @@ class McpAtlassian < Formula
 
   desc "MCP server for Atlassian tools (Confluence, Jira)"
   homepage "https://github.com/sooperset/mcp-atlassian"
-  url "https://files.pythonhosted.org/packages/8d/52/1cd163b7b2bbf4b62b8f42bf54c62062c9682a5784e3db561f6e3bdb8079/mcp_atlassian-0.14.1.tar.gz"
-  sha256 "1d984dd0ffbf122c4961f16dc85bf93cd3ef34c8846ff35e466d3b7127af36ff"
+  url "https://files.pythonhosted.org/packages/38/2a/00fae975999a21521fb54db928eb430ba4b5c3d5f84e0782223d7f35b471/mcp_atlassian-0.14.2.tar.gz"
+  sha256 "2a866a42505ec6e883f1c6b7f3673888d5d22096c476aab6074b29d0228fd371"
   license "MIT"
+  head "https://github.com/sooperset/mcp-atlassian.git", branch: "main"
 
   bottle do
     sha256 cellar: :any,                 arm64_tahoe:   "1cac4e1d39a73332f33d0d5293acdd3114fd2891124b8cc24546e4e59cca0549"
@@ -21,7 +22,7 @@ class McpAtlassian < Formula
   depends_on "cryptography" => :no_linkage
   depends_on "libyaml"
   depends_on "pydantic" => :no_linkage
-  depends_on "python@3.13"
+  depends_on "python@3.14"
   depends_on "rpds-py" => :no_linkage
 
   uses_from_macos "libxml2", since: :ventura
@@ -561,7 +562,7 @@ class McpAtlassian < Formula
     assert_match version.to_s, shell_output("#{bin}/mcp-atlassian --version")
 
     json = <<~JSON
-      {"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{}}}
+      {"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"homebrew","version":"1.0"}}}
       {"jsonrpc":"2.0","method":"notifications/initialized","params":{}}
       {"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}
     JSON
